@@ -1,0 +1,98 @@
+type,agentname,cycle,action,beliefs,agentlocations,message,id
+,,,,,,Creating group: moviegroup,0
+,,,,,,Tasks NOT done for group: moviegroup,1
+agent,walker,,move(shop_outside),[],,,2
+env,walker,1,move(shop_outside),,{},,3
+env,aAA,2,get_name,,{},,4
+agent,ai,,"create_agent(AAA, ""moviewatcher.asl "")","[toBeServed(1)[source(self)],queueNumber(1)[source(self)]]",,,5
+env,aAA,3,move(shop_lobby),,{},,6
+,,,,,,now at shop_outside,7
+agent,walker,,move(shop_store),"[at(shop_outside)[source(percept)], walkerat(shop_outside)[source(percept)], aAAat(shop_lobby)[source(percept)]]",,,8
+env,walker,4,move(shop_store),,"{aAA=shop_lobby, walker=shop_outside}",,9
+,,,,,,New role in moviegroup as: tableres,10
+env,aAA,5,move(shop_restaurant),,"{aAA=shop_lobby, walker=shop_outside}",,11
+env,bBB,6,get_name,,"{aAA=shop_lobby, walker=shop_outside}",,12
+agent,ai,,"create_agent(BBB, ""moviewatcher.asl "")","[toBeServed(1)[source(self)],walkerat(shop_outside)[source(percept)],aAAat(shop_lobby)[source(percept)],queueNumber(1)[source(self)]]",,,13
+env,bBB,7,move(shop_lobby),,"{aAA=shop_lobby, walker=shop_outside}",,14
+,,,,,,now at shop_store,15
+agent,walker,,move(shop_restaurant),"[at(shop_store)[source(percept)], walkerat(shop_store)[source(percept)], aAAat(shop_restaurant)[source(percept)]]",,,16
+env,walker,8,move(shop_restaurant),,"{aAA=shop_restaurant, walker=shop_store}",,17
+env,aAA,9,move(shop_lobby),,"{aAA=shop_restaurant, bBB=shop_lobby, walker=shop_store}",,18
+,,,,,,Tasks NOT done for group: moviegroup,19
+,,,,,,New role in moviegroup as: seat,20
+env,bBB,10,move(shop_cinema),,"{aAA=shop_restaurant, bBB=shop_lobby, walker=shop_store}",,21
+env,cCC,11,get_name,,"{aAA=shop_restaurant, bBB=shop_lobby, walker=shop_store}",,22
+agent,ai,,"create_agent(CCC, ""moviewatcher.asl "")","[toBeServed(1)[source(self)],walkerat(shop_store)[source(percept)],aAAat(shop_restaurant)[source(percept)],queueNumber(1)[source(self)],bBBat(shop_lobby)[source(percept)]]",,,23
+env,cCC,12,move(shop_lobby),,"{aAA=shop_lobby, bBB=shop_lobby, walker=shop_restaurant}",,24
+,,,,,,now at shop_restaurant,25
+agent,walker,,move(shop_cleaners),"[at(shop_restaurant)[source(percept)], walkerat(shop_restaurant)[source(percept)], aAAat(shop_lobby)[source(percept)], bBBat(shop_lobby)[source(percept)]]",,,26
+env,walker,13,move(shop_cleaners),,"{aAA=shop_lobby, bBB=shop_cinema, walker=shop_restaurant}",,27
+env,bBB,14,move(shop_lobby),,"{aAA=shop_lobby, bBB=shop_cinema, walker=shop_restaurant}",,28
+,,,,,,Tasks NOT done for group: moviegroup,29
+env,dDD,15,get_name,,"{aAA=shop_lobby, bBB=shop_cinema, walker=shop_restaurant}",,30
+agent,ai,,"create_agent(DDD, ""moviewatcher.asl "")","[toBeServed(1)[source(self)],walkerat(shop_restaurant)[source(percept)],aAAat(shop_lobby)[source(percept)],queueNumber(1)[source(self)],bBBat(shop_cinema)[source(percept)]]",,,31
+env,dDD,16,move(shop_lobby),,"{aAA=shop_lobby, cCC=shop_lobby, bBB=shop_cinema, walker=shop_restaurant}",,32
+,,,,,,New role in moviegroup as: snack,33
+env,cCC,17,move(shop_store),,"{aAA=shop_lobby, cCC=shop_lobby, bBB=shop_lobby, walker=shop_cleaners}",,34
+,,,,,,now at shop_cleaners,35
+agent,walker,,move(shop_cinema),"[at(shop_cleaners)[source(percept)], walkerat(shop_cleaners)[source(percept)], aAAat(shop_lobby)[source(percept)], bBBat(shop_lobby)[source(percept)], cCCat(shop_lobby)[source(percept)]]",,,36
+env,walker,18,move(shop_cinema),,"{aAA=shop_lobby, cCC=shop_lobby, bBB=shop_lobby, walker=shop_cleaners}",,37
+,,,,,,New role in moviegroup as: ticket,38
+env,dDD,19,move(shop_queue),,"{aAA=shop_lobby, cCC=shop_lobby, bBB=shop_lobby, dDD=shop_lobby, walker=shop_cleaners}",,39
+env,cCC,20,move(shop_lobby),,"{aAA=shop_lobby, cCC=shop_store, bBB=shop_lobby, dDD=shop_lobby, walker=shop_cinema}",,40
+,,,,,,Tasks NOT done for group: moviegroup,41
+,,,,,,now at shop_cinema,42
+agent,walker,,move(shop_bin),"[dDDat(shop_lobby)[source(percept)], at(shop_cinema)[source(percept)], walkerat(shop_cinema)[source(percept)], aAAat(shop_lobby)[source(percept)], bBBat(shop_lobby)[source(percept)], cCCat(shop_store)[source(percept)]]",,,43
+env,walker,21,move(shop_bin),,"{aAA=shop_lobby, cCC=shop_store, bBB=shop_lobby, dDD=shop_lobby, walker=shop_cinema}",,44
+env,dDD,22,move(shop_lobby),,"{aAA=shop_lobby, cCC=shop_store, bBB=shop_lobby, dDD=shop_queue, walker=shop_cinema}",,45
+,,,,,,Tasks DONE for group: moviegroup,46
+env,dDD,23,move(shop_cinema),,"{aAA=shop_lobby, cCC=shop_store, bBB=shop_lobby, dDD=shop_queue, walker=shop_cinema}",,47
+,,,,,,All sent,48
+env,cCC,24,move(shop_cinema),,"{aAA=shop_lobby, cCC=shop_lobby, bBB=shop_lobby, dDD=shop_queue, walker=shop_bin}",,49
+env,bBB,25,move(shop_cinema),,"{aAA=shop_lobby, cCC=shop_lobby, bBB=shop_lobby, dDD=shop_queue, walker=shop_bin}",,50
+,,,,,,now at shop_bin,51
+agent,walker,,move(shop_toilet),"[dDDat(shop_queue)[source(percept)], at(shop_bin)[source(percept)], walkerat(shop_bin)[source(percept)], aAAat(shop_lobby)[source(percept)], bBBat(shop_lobby)[source(percept)], cCCat(shop_lobby)[source(percept)]]",,,52
+env,aAA,26,move(shop_cinema),,"{aAA=shop_lobby, cCC=shop_lobby, bBB=shop_lobby, dDD=shop_cinema, walker=shop_bin}",,53
+env,walker,27,move(shop_toilet),,"{aAA=shop_lobby, cCC=shop_lobby, bBB=shop_lobby, dDD=shop_cinema, walker=shop_bin}",,54
+,,,,,,Watching movie,55
+,,,,,,Watching movie,56
+,,,,,,Watching movie,57
+,,,,,,now at shop_toilet,58
+,,,,,,Watching movie,59
+agent,walker,,move(shop_queue),"[dDDat(shop_cinema)[source(percept)], at(shop_toilet)[source(percept)], walkerat(shop_toilet)[source(percept)], aAAat(shop_cinema)[source(percept)], bBBat(shop_cinema)[source(percept)], cCCat(shop_cinema)[source(percept)]]",,,60
+env,walker,28,move(shop_queue),,"{aAA=shop_cinema, cCC=shop_cinema, bBB=shop_cinema, dDD=shop_cinema, walker=shop_toilet}",,61
+,,,,,,now at shop_queue,62
+agent,walker,,move(shop_lobby),"[dDDat(shop_cinema)[source(percept)], at(shop_queue)[source(percept)], walkerat(shop_queue)[source(percept)], aAAat(shop_cinema)[source(percept)], bBBat(shop_cinema)[source(percept)], cCCat(shop_cinema)[source(percept)]]",,,63
+env,walker,29,move(shop_lobby),,"{aAA=shop_cinema, cCC=shop_cinema, bBB=shop_cinema, dDD=shop_cinema, walker=shop_queue}",,64
+,,,,,,now at shop_lobby,65
+agent,walker,,move(shop_outside),"[dDDat(shop_cinema)[source(percept)], at(shop_lobby)[source(percept)], walkerat(shop_lobby)[source(percept)], aAAat(shop_cinema)[source(percept)], bBBat(shop_cinema)[source(percept)], cCCat(shop_cinema)[source(percept)]]",,,66
+env,walker,30,move(shop_outside),,"{aAA=shop_cinema, cCC=shop_cinema, bBB=shop_cinema, dDD=shop_cinema, walker=shop_lobby}",,67
+,,,,,,now at shop_outside,68
+agent,walker,,move(shop_store),"[dDDat(shop_cinema)[source(percept)], at(shop_outside)[source(percept)], walkerat(shop_outside)[source(percept)], aAAat(shop_cinema)[source(percept)], bBBat(shop_cinema)[source(percept)], cCCat(shop_cinema)[source(percept)]]",,,69
+env,walker,31,move(shop_store),,"{aAA=shop_cinema, cCC=shop_cinema, bBB=shop_cinema, dDD=shop_cinema, walker=shop_outside}",,70
+env,dDD,32,move(shop_lobby),,"{aAA=shop_cinema, cCC=shop_cinema, bBB=shop_cinema, dDD=shop_cinema, walker=shop_outside}",,71
+env,cCC,33,move(shop_lobby),,"{aAA=shop_cinema, cCC=shop_cinema, bBB=shop_cinema, dDD=shop_cinema, walker=shop_outside}",,72
+env,bBB,34,move(shop_lobby),,"{aAA=shop_cinema, cCC=shop_cinema, bBB=shop_cinema, dDD=shop_cinema, walker=shop_outside}",,73
+,,,,,,now at shop_store,74
+agent,walker,,move(shop_restaurant),"[dDDat(shop_cinema)[source(percept)], at(shop_store)[source(percept)], walkerat(shop_store)[source(percept)], aAAat(shop_cinema)[source(percept)], bBBat(shop_cinema)[source(percept)], cCCat(shop_cinema)[source(percept)]]",,,75
+env,walker,35,move(shop_restaurant),,"{aAA=shop_cinema, cCC=shop_cinema, bBB=shop_cinema, dDD=shop_cinema, walker=shop_store}",,76
+env,aAA,36,move(shop_lobby),,"{aAA=shop_cinema, cCC=shop_cinema, bBB=shop_cinema, dDD=shop_lobby, walker=shop_store}",,77
+env,dDD,37,move(shop_outside),,"{aAA=shop_cinema, cCC=shop_lobby, bBB=shop_lobby, dDD=shop_lobby, walker=shop_store}",,78
+env,bBB,38,move(shop_outside),,"{aAA=shop_cinema, cCC=shop_lobby, bBB=shop_lobby, dDD=shop_lobby, walker=shop_store}",,79
+env,cCC,39,move(shop_outside),,"{aAA=shop_cinema, cCC=shop_lobby, bBB=shop_lobby, dDD=shop_lobby, walker=shop_restaurant}",,80
+,,,,,,now at shop_restaurant,81
+agent,walker,,move(shop_cleaners),"[dDDat(shop_lobby)[source(percept)], at(shop_restaurant)[source(percept)], walkerat(shop_restaurant)[source(percept)], aAAat(shop_cinema)[source(percept)], bBBat(shop_lobby)[source(percept)], cCCat(shop_lobby)[source(percept)]]",,,82
+env,walker,40,move(shop_cleaners),,"{aAA=shop_lobby, cCC=shop_lobby, bBB=shop_lobby, dDD=shop_lobby, walker=shop_restaurant}",,83
+env,aAA,41,move(shop_outside),,"{aAA=shop_lobby, cCC=shop_lobby, bBB=shop_outside, dDD=shop_outside, walker=shop_restaurant}",,84
+,,,,,,now at shop_cleaners,85
+agent,walker,,move(shop_cinema),"[dDDat(shop_outside)[source(percept)], at(shop_cleaners)[source(percept)], walkerat(shop_cleaners)[source(percept)], aAAat(shop_lobby)[source(percept)], bBBat(shop_outside)[source(percept)], cCCat(shop_outside)[source(percept)]]",,,86
+env,walker,42,move(shop_cinema),,"{aAA=shop_lobby, cCC=shop_outside, bBB=shop_outside, dDD=shop_outside, walker=shop_cleaners}",,87
+,,,,,,now at shop_cinema,88
+agent,walker,,move(shop_bin),"[dDDat(shop_outside)[source(percept)], at(shop_cinema)[source(percept)], walkerat(shop_cinema)[source(percept)], aAAat(shop_outside)[source(percept)], bBBat(shop_outside)[source(percept)], cCCat(shop_outside)[source(percept)]]",,,89
+env,walker,43,move(shop_bin),,"{aAA=shop_outside, cCC=shop_outside, bBB=shop_outside, dDD=shop_outside, walker=shop_cinema}",,90
+,,,,,,now at shop_bin,91
+agent,walker,,move(shop_toilet),"[dDDat(shop_outside)[source(percept)], at(shop_bin)[source(percept)], walkerat(shop_bin)[source(percept)], aAAat(shop_outside)[source(percept)], bBBat(shop_outside)[source(percept)], cCCat(shop_outside)[source(percept)]]",,,92
+env,walker,44,move(shop_toilet),,"{aAA=shop_outside, cCC=shop_outside, bBB=shop_outside, dDD=shop_outside, walker=shop_bin}",,93
+,,,,,,now at shop_toilet,94
+agent,walker,,move(shop_queue),"[dDDat(shop_outside)[source(percept)], at(shop_toilet)[source(percept)], walkerat(shop_toilet)[source(percept)], aAAat(shop_outside)[source(percept)], bBBat(shop_outside)[source(percept)], cCCat(shop_outside)[source(percept)]]",,,95
+env,walker,45,move(shop_queue),,"{aAA=shop_outside, cCC=shop_outside, bBB=shop_outside, dDD=shop_outside, walker=shop_toilet}",,96
